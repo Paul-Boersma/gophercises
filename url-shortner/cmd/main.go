@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	urlShort "github.com/Paul-Boersma/gophercises/url-shortner"
+	urlShort "github.com/Paul-Boersma/gophercises"
 )
 
 func main() {

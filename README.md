@@ -11,7 +11,11 @@ within a specified time limit. It covers (a.o.) the following packages:
 It also introduces the concept of go routines and channels.
 
 #### URL-shortner
-
+This shortner package handles redirects of short urls to more complicated ones.
+It covers the following packages:
+- net
+- net/http
+- gopkg.in/yaml.v3 (3rd party)
 
 
 
