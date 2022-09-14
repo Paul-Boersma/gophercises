@@ -16,6 +16,10 @@ func main() {
 		"/yaml-godoc":     "https://godoc.org/gopkg.in/yaml.v2",
 	}
 	mapHandler := urlShort.MapHandler(pathsToUrls, mux)
+	fmt.Println("Starting the server on :8080")
+
+	// The mapHandler is a Handler interface which functions as a ServeMux
+	http.ListenAndServe(":8080", mapHandler)
 
 	// Build the YAMLHandler using the mapHandler as the
 	// fallback
@@ -29,8 +33,6 @@ func main() {
 	// if err != nil {
 	// 	panic(err)
 	// }
-	fmt.Println("Starting the server on :8080")
-	http.ListenAndServe(":8080", mapHandler)
 }
 
 func defaultMux() *http.ServeMux {
