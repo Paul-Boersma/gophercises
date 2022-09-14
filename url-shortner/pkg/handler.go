@@ -1,6 +1,7 @@
 package urlshort
 
 import (
+	"fmt"
 	"net/http"
 
 	"gopkg.in/yaml.v2"
@@ -18,6 +19,7 @@ func MapHandler(pathsToUrls map[string]string, fallback http.Handler) http.Handl
 	return func(rw http.ResponseWriter, r *http.Request) {
 		url := r.URL.Path
 		if dest, ok := pathsToUrls[url]; ok {
+			fmt.Printf("Redirecting %v %v", url, dest)
 			http.Redirect(rw, r, dest, http.StatusFound)
 		}
 		fallback.ServeHTTP(rw, r)
@@ -29,7 +31,9 @@ func YAMLHandler(yml []byte, fallback http.Handler) (http.HandlerFunc, error) {
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println(pathToUrls)
 	return MapHandler(pathToUrls, fallback), nil
+
 }
 
 type pathUrl struct {
@@ -42,6 +46,7 @@ func parseYAML(yml []byte) (map[string]string, error) {
 
 	err := yaml.Unmarshal(yml, &pathUrls)
 	if err != nil {
+		fmt.Println("error unmarshalling yaml file")
 		return nil, err
 	}
 	pathToUrls := map[string]string{}

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/DennisVis/urlshort"
 	urlShort "github.com/Paul-Boersma/gophercises/url-shortner/pkg"
 )
 
@@ -17,15 +16,15 @@ func main() {
 	}
 
 	yaml := `
-		- path: /urlshort
-		url: https://github.com/gophercises/urlshort
-		- path: /urlshort-final
-		url: https://github.com/gophercises/urlshort/tree/solution
-	`
+- path: /urlshort
+  url: https://github.com/gophercises/urlshort
+- path: /urlshort-final
+  url: https://github.com/gophercises/urlshort/tree/solution
+`
 
 	mapHandler := urlShort.MapHandler(pathsToUrls, mux)
 
-	yamlHandler, err := urlshort.YAMLHandler([]byte(yaml), mapHandler)
+	yamlHandler, err := urlShort.YAMLHandler([]byte(yaml), mapHandler)
 	if err != nil {
 		panic(err)
 	}
