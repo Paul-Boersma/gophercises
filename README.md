@@ -8,24 +8,28 @@ within a specified time limit. It covers (a.o.) the following packages:
 - flag
 - encoding/csv
 
-It also introduces the concept of go routines and channels.
+It also included the concept of go routines and channels, 
+required for implementing the timer functionality.
 
 #### URL-shortner
-This shortner package handles redirects of short urls to more complicated ones.
-2 Types of Handlers are used as a ServeMux; a map and a yaml file. 
+This url-shortner package handles requests to urls for which no handlers have been implemented.
+Instead requests to these 'short' urls are redirected to urls which can be handled, 
+albeit to 3rd party servers.
+
+The package provides two mapping functions, a regular map and yaml format (not exactly ServeMuxes as no handlers are registered) 
 
 During this exercise I mostly gained familiarity with the net/http package and
 the Types associated with this package, in particular:
-- ServeMux, Server, Client
+- Server, Client, ServeMux
 - Response, Request
 - ResponseWriter (interface)
 
-It covers the following packages:
-- net
+The following packages are covered:
 - net/http
 - gopkg.in/yaml.v3 (3rd party)
 
-It also introduces the concept of go workspaces, go modules and package management. 
+It also included the concept of go workspaces, go modules and package management, 
+required for maintaining multiple go modules on a single github page.
 
 #### Choose Your Own Adventure
 
