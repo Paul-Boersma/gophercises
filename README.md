@@ -31,7 +31,52 @@ The following packages are covered:
 It also included the concept of go workspaces, go modules and package management, 
 required for maintaining multiple go modules on a single github page.
 
+!TODO: To make this exercise more challenging I decided to later improve it by:
+- Allowing the use of a file instead of raw bytes data
+- Build a JSON handler next to the YAML handler
+- Implement a connection with a database to get the mapping
+
 #### Choose Your Own Adventure
+
+
+The following packages are covered:
+- text/template
+- html/template
+
+It includes the concept of building HTML pages for Go Clients throught actions '{{ . }}'
+
+
+
+
+##### Notes:
+Templates are defined as .gohtml files.
+
+Process:
+- Create template (template.New) 
+- Parse template (template.Parse)
+- Execute template (template.Execute)
+
+
+Terminology
+Actions:
+- Data evaluations
+    - Arguments (simply go values: nil, primitives, ., vars, fields, niladic methods, niladic functions)
+    - Pipelines (chained seqeuence of commands; arguments including functions & methods) 
+        arguments and pipelines may be assigned to variables '$variable = pipeline'
+- Control structures
+
+
+Functions are declared in:
+- template struct (go code)
+- global function map (functions & binary comparison operators)
+        template functions may be created through code 'template.Funcs()'
+
+Combining templates:
+- Associated templates
+- Nested templates
+        assocate templates through code 'template.New()', all associated templates are stored in a single namespace within the Template struct
+        create nested template at top of file through {{ define "templateName" }} <template> {{end}}
+        refer to template -> {{ template "templateName" }} 
 
 
 
