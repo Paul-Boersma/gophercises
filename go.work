@@ -4,4 +4,6 @@ use (
     ./quiz-game
     ./url-shortner
     ./cyoa
+    ./link-parser
+    ./sitemap-builder
 )

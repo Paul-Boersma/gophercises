@@ -49,6 +49,25 @@ like story and template to deviate from the default one.
 The following design pattern is covered:
 - Functional options pattern
 
+### Link-Parser
+A link parser may come in handy when trying to scrape data from websites.
+
+<b>What did I learn doing this exercise?</b>
+- Creation of packages, also made me consider folder structure and http webservice architecture
+- Writing tests --> package: testing
+- Getting more comforatble with reading package documentation
+- Getting familiar with DFS and BFS algorithms --> leetcode.com
+
+### Sitemap Builder
+
+
+<b>What did I learn doing this exercise?</b>
+
+
+
+
+
+
 ##### Notes:
 Templates are defined as .gohtml files.
 
