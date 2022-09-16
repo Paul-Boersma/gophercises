@@ -4,17 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="templates/styles.css">
   <title>Document</title>
 </head>
 <body>
-    <h1>{{ .Title }}</h1> 
-    {{ range .Paragraphs }}
-        <p> {{ . }} </p>
-    {{ end }}
-    <ul>
-    {{ range .Options }}
-        <li><a href="/{{ .ChapterReference }}">{{ .Text }}</a></li>
-    {{ end }}
-    </ul>
+    <section class="page">
+        <h1>{{ .Title }}</h1> 
+        {{ range .Paragraphs }}
+            <p> {{ . }} </p>
+        {{ end }}
+        <ul>
+        {{ range .Options }}
+            <li><a href="/{{ .ChapterReference }}">{{ .Text }}</a></li>
+        {{ end }}
+        </ul>
+    </section>
 </body>
 </html>
