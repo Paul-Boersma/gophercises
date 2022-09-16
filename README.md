@@ -1,7 +1,7 @@
-### Gophercises
+## Gophercises
 This repo contains the exercises I made to gain familiarity with the Go Language.
 
-#### Quiz-game
+### Quiz-game
 This game asks the user to answer simple mathematical questions of a provided file, 
 within a specified time limit. It covers (a.o.) the following packages:
 - time
@@ -11,7 +11,7 @@ within a specified time limit. It covers (a.o.) the following packages:
 It also included the concept of go routines and channels, 
 required for implementing the timer functionality.
 
-#### URL-shortner
+### URL-shortner
 This url-shortner package handles requests to urls for which no handlers have been implemented.
 Instead requests to these 'short' urls are redirected to urls which can be handled, 
 albeit to 3rd party servers.
@@ -37,7 +37,7 @@ required for maintaining multiple go modules on a single github page.
 - Build a JSON handler next to the YAML handler
 - Implement a connection with a database to get the mapping
 
-#### Choose Your Own Adventure
+### Choose Your Own Adventure
 <b>What did I learn doing this exercise?</b>
 - Opening a file
 - Parsing JSON data into Go Structures
