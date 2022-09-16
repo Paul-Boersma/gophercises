@@ -25,7 +25,6 @@ func main() {
 	}
 
 	fs := http.FileServer(http.Dir("."))
-
 	storyHandler := NewHandler(story)
 
 	http.HandleFunc("/", storyHandler.ServeHTTP)
