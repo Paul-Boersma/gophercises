@@ -39,16 +39,12 @@ required for maintaining multiple go modules on a single github page.
 
 ### Choose Your Own Adventure
 <b>What did I learn doing this exercise?</b>
-- Opening a file
-- Parsing JSON data into Go Structures
-- Building a (HTML) template file (.gohtml)
-- Setting up a HTTP server and handling requests by writing the template file 
+- Opening files from the operating system --> package: os
+- Parsing JSON data into Go Structures --> package: encode/json
+- Building a (HTML) template file (.gohtml) --> package: text/template & html/template
+- Setting up a HTTP server and handling requests by writing the template file --> package: net/http
 - Handle the requests through a handler struct, which takes optional parameters
 like story and template to deviate from the default one.
-
-The following packages are covered:
-- text/template
-- html/template
 
 The following design pattern is covered:
 - Functional options pattern
@@ -60,7 +56,6 @@ Process:
 - Create template (template.New) 
 - Parse template (template.Parse)
 - Execute template (template.Execute)
-
 
 Terminology
 Actions:
