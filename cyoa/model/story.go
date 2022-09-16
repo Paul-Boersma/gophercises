@@ -18,6 +18,8 @@ type Option struct {
 	Text             string `json:"text"`
 }
 
+// Marshall/Unmarshall for slices of bytes
+// Encode/Decode for files (io.Reader / io.Writer)
 func JsonStory(r io.Reader) (story Story, err error) {
 	decoder := json.NewDecoder(r)
 	err = decoder.Decode(&story)
