@@ -18,6 +18,7 @@ albeit to 3rd party servers.
 
 The package provides two mapping functions, a regular map and yaml format (not exactly ServeMuxes as no handlers are registered) 
 
+<b>What did I learn doing this exercise?</b>
 During this exercise I mostly gained familiarity with the net/http package and
 the Types associated with this package, in particular:
 - Server, Client, ServeMux
@@ -37,16 +38,20 @@ required for maintaining multiple go modules on a single github page.
 - Implement a connection with a database to get the mapping
 
 #### Choose Your Own Adventure
-
+<b>What did I learn doing this exercise?</b>
+- Opening a file
+- Parsing JSON data into Go Structures
+- Building a (HTML) template file (.gohtml)
+- Setting up a HTTP server and handling requests by writing the template file 
+- Handle the requests through a handler struct, which takes optional parameters
+like story and template to deviate from the default one.
 
 The following packages are covered:
 - text/template
 - html/template
 
-It includes the concept of building HTML pages for Go Clients throught actions '{{ . }}'
-
-
-
+The following design pattern is covered:
+- Functional options pattern
 
 ##### Notes:
 Templates are defined as .gohtml files.
