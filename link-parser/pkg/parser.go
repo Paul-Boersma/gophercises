@@ -1,7 +1,12 @@
 package parser
 
 import (
+	"fmt"
+	"log"
 	"os"
+	"path/filepath"
+
+	"golang.org/x/net/html"
 )
 
 type Link struct {
@@ -25,21 +30,25 @@ func ParseHTML(filename string) (links []Link, err error) {
 		log.Fatal(err)
 	}
 
-	return parseAnchorTags(doc)
+	return parseAnchorTags(doc), nil
 }
 
 func parseAnchorTags(n *html.Node) (links []Link) {
+	if n == nil {
+		return
+	}
+
 	if n.Type == html.ElementNode && n.Data == "a" {
-		var link Link
 		for _, attr := range n.Attr {
 			if attr.Key == "href" {
-				link.Href = attr.Val
+				links = append(links, Link{Href: attr.Val, Text: n.FirstChild.Data})
 			}
 		}
-		link.Text = n.FirstChild.Data
-		links = append(links, link)
 	}
+
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		parseAnchorTags(c)
+		links = append(links, parseAnchorTags(c)...)
 	}
+
+	return links
 }

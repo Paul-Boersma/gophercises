@@ -1,11 +1,18 @@
 package main
 
 import (
-	"github.com/Paul-Boersma/gophercises/pkg/parser"
+	"fmt"
+	"log"
+
+	parser "github.com/Paul-Boersma/gophercises/link-parser/pkg"
 )
 
 func main() {
-	parser.ParseHTML("./testfiles/ex1.html")
+	links, err := parser.ParseHTML("./testfiles/ex1.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(links)
 }
 
 // Wat wil ik testen?
