@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	links, err := parser.ParseHTML("./testfiles/ex4.html")
+	links, err := parser.ParseHTML("./testfiles/ex2.html")
 	if err != nil {
 		log.Fatal(err)
 	}

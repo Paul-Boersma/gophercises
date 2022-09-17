@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"golang.org/x/net/html"
 )
@@ -41,7 +42,10 @@ func parseAnchorTags(n *html.Node) (links []Link) {
 	if n.Type == html.ElementNode && n.Data == "a" {
 		for _, attr := range n.Attr {
 			if attr.Key == "href" {
-				links = append(links, Link{Href: attr.Val, Text: n.FirstChild.Data})
+				links = append(links, Link{
+					Href: attr.Val,
+					Text: getNodeText(n),
+				})
 			}
 		}
 	}
@@ -51,4 +55,18 @@ func parseAnchorTags(n *html.Node) (links []Link) {
 	}
 
 	return links
+}
+
+func getNodeText(n *html.Node) (text string) {
+	if n.Type == html.TextNode {
+		return n.Data
+	}
+	if n.Type != html.ElementNode {
+		return ""
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		text = strings.Join([]string{text, strings.TrimSpace(getNodeText(c))}, " ")
+	}
+	return text
 }
