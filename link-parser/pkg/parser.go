@@ -2,6 +2,7 @@ package parser
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -17,7 +18,7 @@ type Link struct {
 
 func ParseHTML(filename string) (links []Link, err error) {
 	if filepath.Ext(filename) != ".html" {
-		fmt.Errorf("Provided file should be of format '.html'")
+		err = fmt.Errorf("Provided file should be of format '.html'")
 		return nil, err
 	}
 
@@ -31,6 +32,23 @@ func ParseHTML(filename string) (links []Link, err error) {
 		log.Fatal(err)
 	}
 
+	return parseAnchorTags(doc), nil
+}
+
+func ParseHtmlText(htmlText string) (links []Link, err error) {
+	r := strings.NewReader(htmlText)
+	doc, err := html.Parse(r)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return parseAnchorTags(doc), nil
+}
+
+func ParseHtmlReader(r io.Reader) (links []Link, err error) {
+	doc, err := html.Parse(r)
+	if err != nil {
+		log.Fatal(err)
+	}
 	return parseAnchorTags(doc), nil
 }
 

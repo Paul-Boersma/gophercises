@@ -1,17 +1,57 @@
 package main
 
 import (
-	"encoding/xml"
 	"flag"
-	"github.com/Paul-Boersma/gophercises"
+	"fmt"
+	"log"
 	"net/http"
+
+	parser "github.com/Paul-Boersma/gophercises/link-parser/pkg"
 )
 
 func main() {
-	fmt.Println("Starting server")
-	http.ListenAndServe(":8080", nil)
+	var url string
+	flag.StringVar(&url, "url", "https://calhoun.io", "url for which a sitemap is built")
+	flag.Parse()
+
+	fmt.Println(url)
+
+	resp, err := http.Get(url)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	links, err := parser.ParseHtmlReader(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for i, link := range links {
+		fmt.Printf("%v: %v --> %v\n", i, link.Href, link.Text)
+	}
 }
 
-// No cyclical dependencies
-// Provide map in XML format
-// Use link-parser package
+func bfsSiteBuilder(url string, memo map[string][]string) map[string][]string {
+	if url == "" {
+		return nil
+	}
+	if _, ok := memo[url]; ok {
+		return memo
+	}
+
+	resp, err := http.Get(url)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	links, err := parser.ParseHtmlReader(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, link := range links {
+		return bfsSiteBuilder(link.Href, memo)
+	}
+
+	return memo
+}
