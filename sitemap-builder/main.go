@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 
 	parser "github.com/Paul-Boersma/gophercises/link-parser/pkg"
 )
@@ -13,6 +14,8 @@ func main() {
 	var url string
 	flag.StringVar(&url, "url", "https://calhoun.io", "url for which a sitemap is built")
 	flag.Parse()
+
+	assureWebProtocol(&url)
 
 	fmt.Println(url)
 
@@ -54,4 +57,11 @@ func bfsSiteBuilder(url string, memo map[string][]string) map[string][]string {
 	}
 
 	return memo
+}
+
+func assureWebProtocol(url *string) {
+	hasWebProtocol := strings.HasPrefix(*url, "https://") || strings.HasPrefix(*url, "http://")
+	if !hasWebProtocol {
+		*url = "https://" + *url
+	}
 }

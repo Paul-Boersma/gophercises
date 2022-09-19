@@ -62,7 +62,9 @@ A link parser may come in handy when trying to scrape data from websites.
 
 
 <b>What did I learn doing this exercise?</b>
-
+- Implement BFS recursive calls
+- Update link-parser package to allow URL's instead of filenames
+- XML encoding
 
 
 
